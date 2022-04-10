@@ -13,8 +13,20 @@ import com.vaadin.flow.data.binder.Binder;
 
 public class ReviewForm extends FormLayout {
 
-    TextField title = new TextField("Title");
-    TextArea message = new TextArea("Message");
+    //TODO Detta är troligtvis ett fel, som måste åtgärdas! Lägg till rätt fält!
+    // revGame, revTitle, RevText, RevPlus, RevMinus, RevScore
+
+    //TODO 2 Bind if used other name for Textfield, TextAre etc than stated previously.
+    // binder.bind(title, "MyNameInTheJavaObject");
+
+    // Har troligtvis med Game klassen att göra. Hur vi kontruerar en Review. Kolla upp detta.
+
+    TextField revTitle = new TextField("Title");
+    TextArea revText = new TextArea("text");
+    TextField revPlus = new TextField("text");
+    TextField revMinus = new TextField("text");
+    TextField revScore = new TextField("text");
+    TextField revGame = new TextField("Game");
     Button saveButton = new Button("Save");
 
     Binder<Review> binder = new BeanValidationBinder<>(Review.class);
@@ -32,7 +44,7 @@ public class ReviewForm extends FormLayout {
         //Bind if used other name for Textfield, TextAre etc than stated previously.
         //binder.bind(title, "MyNameInTheJavaObject");
 
-        add(title, message, saveButton);
+        add(revGame, revTitle, revText, revPlus, revMinus, revScore, saveButton);
 
     }
 

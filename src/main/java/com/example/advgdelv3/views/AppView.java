@@ -38,10 +38,10 @@ public class AppView extends AppLayout {
 
         addToNavbar(navbarLayout);
 
-        RouterLink blogViewLink = new RouterLink("View BlogPosts", ReviewView.class);
+        RouterLink blogViewLink = new RouterLink("Läs Recensioner", ReviewView.class);
         VerticalLayout sideDrawerContent = new VerticalLayout(blogViewLink);
 
-        RouterLink managePostLink = new RouterLink("Manage posts", ManageReviewsView.class);
+        RouterLink managePostLink = new RouterLink("Hantera Recensioner", ManageReviewsView.class);
         if (PrincipalUtil.isLoggedIn())sideDrawerContent.add(managePostLink);
 
         addToDrawer(sideDrawerContent);
