@@ -28,7 +28,7 @@ public class ReviewForm extends FormLayout {
     TextField revPlus = new TextField("revPlus");
     TextField revMinus = new TextField("revMinus");
     IntegerField revScore = new IntegerField("revScore");
-    TextField revGame = new TextField("revGame");
+    //TextField revGame = new TextField("revGame");
     Button saveButton = new Button("Save");
 
 
@@ -49,7 +49,7 @@ public class ReviewForm extends FormLayout {
         //Bind if used other name for Textfield, TextAre etc than stated previously.
         //binder.bind(title, "MyNameInTheJavaObject");
 
-        add(revGame, revTitle, revText, revPlus, revMinus, revScore, saveButton);
+        add(/*revGame,*/ revTitle, revText, revPlus, revMinus, revScore, saveButton);
 
     }
 
