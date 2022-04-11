@@ -31,9 +31,12 @@ public class ReviewForm extends FormLayout {
     TextField revGame = new TextField("revGame");
     Button saveButton = new Button("Save");
 
+
     Binder<Review> binder = new BeanValidationBinder<>(Review.class);
     ReviewService reviewService;
     ManageReviewsView manageReviewsView;
+
+    //reviewService.findReviewById(this).getRevGame().getGameTitle()
 
     public ReviewForm(ReviewService reviewService, ManageReviewsView manageReviewsView){
         this.reviewService = reviewService;
