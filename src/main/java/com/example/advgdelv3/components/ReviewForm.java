@@ -10,6 +10,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.BinderValidationErrorHandler;
 
 public class ReviewForm extends FormLayout {
 
@@ -19,14 +20,14 @@ public class ReviewForm extends FormLayout {
     //TODO 2 Bind if used other name for Textfield, TextAre etc than stated previously.
     // binder.bind(title, "MyNameInTheJavaObject");
 
-    // Har troligtvis med Game klassen att göra. Hur vi kontruerar en Review. Kolla upp detta.
+    // Har troligtvis med Game klassen att göra. Hur vi konstruerar en Review. Kolla upp detta.
 
-    TextField revTitle = new TextField("Title");
-    TextArea revText = new TextArea("text");
-    TextField revPlus = new TextField("text");
-    TextField revMinus = new TextField("text");
-    TextField revScore = new TextField("text");
-    TextField revGame = new TextField("Game");
+    TextField revTitle = new TextField("revTitle");
+    TextArea revText = new TextArea("revText");
+    TextField revPlus = new TextField("revPlus");
+    TextField revMinus = new TextField("revMinus");
+    TextField revScore = new TextField("revScore");
+    TextField revGame = new TextField("revGame");
     Button saveButton = new Button("Save");
 
     Binder<Review> binder = new BeanValidationBinder<>(Review.class);

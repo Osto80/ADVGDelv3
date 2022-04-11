@@ -8,13 +8,14 @@ import java.util.Set;
 @Entity
 public class AppUser {
 
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column//(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "appUser")

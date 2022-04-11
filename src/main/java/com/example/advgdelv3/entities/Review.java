@@ -32,7 +32,7 @@ public class Review {
     private int revScore;
 
     @ManyToOne
-    @JoinColumn(name = "appuser_id")
+    @JoinColumn(name = "app_user_id")
     private AppUser appUser;
 
     @ManyToOne
