@@ -6,11 +6,12 @@ import com.example.advgdelv3.views.ManageReviewsView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.binder.BinderValidationErrorHandler;
+
 
 public class ReviewForm extends FormLayout {
 
@@ -26,7 +27,7 @@ public class ReviewForm extends FormLayout {
     TextArea revText = new TextArea("revText");
     TextField revPlus = new TextField("revPlus");
     TextField revMinus = new TextField("revMinus");
-    TextField revScore = new TextField("revScore");
+    IntegerField revScore = new IntegerField("revScore");
     TextField revGame = new TextField("revGame");
     Button saveButton = new Button("Save");
 

@@ -11,8 +11,6 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-
     @Column
     @NotBlank
     private String revTitle;
