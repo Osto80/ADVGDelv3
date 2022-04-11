@@ -5,6 +5,7 @@ import com.example.advgdelv3.entities.AppUser;
 import com.example.advgdelv3.entities.Review;
 import com.example.advgdelv3.repositories.AppUserRepository;
 import com.example.advgdelv3.security.PrincipalUtil;
+import com.example.advgdelv3.service.GameService;
 import com.example.advgdelv3.service.ReviewService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -28,11 +29,12 @@ public class ManageReviewsView extends VerticalLayout {
     ReviewService reviewService;
     ReviewForm reviewForm;
     AppUserRepository appUserRepository;
+    GameService gameService;
 
-    public ManageReviewsView(ReviewService reviewService, AppUserRepository appUserRepository) {
+    public ManageReviewsView(ReviewService reviewService, AppUserRepository appUserRepository, GameService gameService) {
         this.reviewService = reviewService;
         this.appUserRepository = appUserRepository;
-        this.reviewForm = new ReviewForm(reviewService, this);
+        this.reviewForm = new ReviewForm(reviewService, this, gameService);
         setAlignItems(Alignment.CENTER);
         add(new H2("Hantera inlägg av " + PrincipalUtil.getPrincipalName() + ": "));
 
@@ -71,7 +73,7 @@ public class ManageReviewsView extends VerticalLayout {
 
         Button button = new Button("Add new post", evt -> {
             Dialog dialog = new Dialog();
-            ReviewForm dialogForm = new ReviewForm(reviewService, this);
+            ReviewForm dialogForm = new ReviewForm(reviewService, this, gameService);
 
             Review review = new Review();
             AppUser currentUser = appUserRepository

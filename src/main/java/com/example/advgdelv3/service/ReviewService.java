@@ -41,6 +41,8 @@ public class ReviewService {
             originalReview.setRevPlus(changedReview.getRevPlus());
         if(changedReview.getRevMinus() != null)
             originalReview.setRevMinus(changedReview.getRevMinus());
+        if(changedReview.getRevGame() != null)
+            originalReview.setRevGame(changedReview.getRevGame());
 
         // Checks if user score is above or under min-max allowed, and resets to allowed values.
         if(changedReview.getRevScore() < 1) changedReview.setRevScore(1);

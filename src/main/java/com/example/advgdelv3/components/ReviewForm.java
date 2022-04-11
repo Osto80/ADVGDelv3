@@ -1,9 +1,13 @@
 package com.example.advgdelv3.components;
 
+import com.example.advgdelv3.entities.Game;
 import com.example.advgdelv3.entities.Review;
+import com.example.advgdelv3.repositories.GameRepository;
+import com.example.advgdelv3.service.GameService;
 import com.example.advgdelv3.service.ReviewService;
 import com.example.advgdelv3.views.ManageReviewsView;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.IntegerField;
@@ -29,27 +33,34 @@ public class ReviewForm extends FormLayout {
     TextField revMinus = new TextField("revMinus");
     IntegerField revScore = new IntegerField("revScore");
     //TextField revGame = new TextField("revGame");
+    ComboBox<Game> revGame = new ComboBox<>("Game");
     Button saveButton = new Button("Save");
 
 
     Binder<Review> binder = new BeanValidationBinder<>(Review.class);
     ReviewService reviewService;
     ManageReviewsView manageReviewsView;
+    GameService gameService;
+
 
     //reviewService.findReviewById(this).getRevGame().getGameTitle()
 
-    public ReviewForm(ReviewService reviewService, ManageReviewsView manageReviewsView){
+    public ReviewForm(ReviewService reviewService, ManageReviewsView manageReviewsView, GameService gameService){
         this.reviewService = reviewService;
         this.manageReviewsView = manageReviewsView;
+        this.gameService = gameService;
+        revGame.setItems(gameService.findAllGames());
+        revGame.setItemLabelGenerator(Game::getGameTitle);
         binder.bindInstanceFields(this);
         setVisible(false);
+
 
         saveButton.addClickListener(evt -> handleSave());
 
         //Bind if used other name for Textfield, TextAre etc than stated previously.
         //binder.bind(title, "MyNameInTheJavaObject");
 
-        add(/*revGame,*/ revTitle, revText, revPlus, revMinus, revScore, saveButton);
+        add(revGame, revTitle, revText, revPlus, revMinus, revScore, saveButton);
 
     }
 
