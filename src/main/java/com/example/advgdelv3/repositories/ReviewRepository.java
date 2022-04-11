@@ -11,4 +11,6 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     List<Review> findByAppUser_Username(String username);
 
+    List<Review> findAllByOrderByIdDesc();
+
 }

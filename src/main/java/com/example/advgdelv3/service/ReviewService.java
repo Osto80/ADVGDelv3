@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Size;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -16,6 +17,10 @@ public class ReviewService {
 
     public List<Review> findAll() {
         return reviewRepository.findAll();
+    }
+
+    public List<Review> findAllByOrderByIdDesc(){
+        return reviewRepository.findAllByOrderByIdDesc();
     }
 
     public Review findReviewById(int id) {

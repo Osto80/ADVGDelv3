@@ -6,6 +6,9 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import net.bytebuddy.TypeCache;
+
+import java.util.Comparator;
 
 @Route(value = "/", layout = AppView.class)
 @AnonymousAllowed
@@ -16,9 +19,13 @@ public class ReviewView extends VerticalLayout {
 
         setAlignItems(Alignment.CENTER);
 
-        reviewService.findAll().forEach(review -> {
+        reviewService
+                .findAllByOrderByIdDesc()
+                .forEach(review -> {
 
             H3 reviewTitle = new H3(review.getRevTitle());
+            reviewTitle.getStyle().set("color", "red");
+            reviewTitle.getStyle().set("font-weight", "Bold");
             Paragraph reviewText = new Paragraph(review.getRevText());
             H5 reviewPlus = new H5("Plus: " + review.getRevPlus());
             H5 reviewMinus = new H5("Minus: " + review.getRevMinus());
@@ -31,6 +38,7 @@ public class ReviewView extends VerticalLayout {
             writtenBY.add(author);
 
             add(reviewTitle, reviewText, reviewPlus, reviewMinus, reviewScore, writtenBY, new Hr());
+
 
         });
     }
