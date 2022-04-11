@@ -38,8 +38,12 @@ public class AdvgDelv3Application {
 
             Review review1 = new Review(gameRepository.getById(1), "Elden Ring Recension", "Ett enormt äventyr som inte vågar slå en på fingrarna när man gapar efter för mycket", "Stor öppen värld att utforska", "Otydligt vid tillfällen", 5, appUser);
             Review review2 = new Review(gameRepository.getById(2), "Super Mario 64 Recension", "Marios första steg på Z axeln är fantastiskt kul", "Kul att springa omkring", "Kameran hänger inte alltid med", 5, appUser1);
-            reviewRepository.saveAll(List.of(review1, review2));*/
+            reviewRepository.saveAll(List.of(review1, review2));
+
+             */
         };
+
+
 
     }
 

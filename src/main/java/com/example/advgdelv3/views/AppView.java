@@ -38,11 +38,14 @@ public class AppView extends AppLayout {
 
         addToNavbar(navbarLayout);
 
-        RouterLink blogViewLink = new RouterLink("Läs Recensioner", ReviewView.class);
-        VerticalLayout sideDrawerContent = new VerticalLayout(blogViewLink);
+        RouterLink reviewViewLink = new RouterLink("Läs Recensioner", ReviewView.class);
+        VerticalLayout sideDrawerContent = new VerticalLayout(reviewViewLink);
 
-        RouterLink managePostLink = new RouterLink("Hantera Recensioner", ManageReviewsView.class);
-        if (PrincipalUtil.isLoggedIn())sideDrawerContent.add(managePostLink);
+        RouterLink manageReviewLink = new RouterLink("Hantera Recensioner", ManageReviewsView.class);
+        if (PrincipalUtil.isLoggedIn())sideDrawerContent.add(manageReviewLink);
+
+        RouterLink manageGamesLink = new RouterLink("Hantera Spel", ManageGamesView.class);
+        if (PrincipalUtil.isLoggedIn())sideDrawerContent.add(manageGamesLink);
 
         addToDrawer(sideDrawerContent);
     }
