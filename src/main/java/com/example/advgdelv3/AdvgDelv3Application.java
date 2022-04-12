@@ -13,6 +13,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
@@ -26,6 +30,10 @@ public class AdvgDelv3Application implements AppShellConfigurator {
     @Bean
     CommandLineRunner init(AppUserRepository appUserRepository, ReviewRepository reviewRepository, GameRepository gameRepository){
         return args -> {
+
+            /*AppUser admin = new AppUser("admin", "admin");
+            appUserRepository.save(admin);*/
+
             // ##########################
             // Run first time for content
             // Then comment out
@@ -33,7 +41,7 @@ public class AdvgDelv3Application implements AppShellConfigurator {
             /*AppUser appUser = new AppUser("Daniel", "pass1");
             AppUser appUser1 = new AppUser("Arvid", "pass2");
             appUserRepository.saveAll(List.of(appUser, appUser1));
-
+            /*
             Game game1 = new Game("Elden Ring", "FROM Software", 2022);
             Game game2 = new Game("Super Mario 64", "Nintendo", 1996);
             Game game3 = new Game("Valheim", "Iron Gate AB", 2021);

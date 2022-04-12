@@ -26,7 +26,6 @@ public class Review {
     private String revMinus;
 
     @Column
-    //@Size(message = "GURKBOLL!", min = 1, max = 5)
     private int revScore;
 
     @ManyToOne

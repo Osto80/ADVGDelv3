@@ -1,6 +1,7 @@
 package com.example.advgdelv3.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -62,4 +63,6 @@ public class AppUser {
     public void setReviewSet(Set<Review> reviewSet) {
         this.reviewSet = reviewSet;
     }
+
+
 }

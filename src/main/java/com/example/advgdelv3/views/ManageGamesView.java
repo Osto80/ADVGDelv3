@@ -21,6 +21,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 
 @Route(value = "/managegames", layout = AppView.class)
 @PermitAll
