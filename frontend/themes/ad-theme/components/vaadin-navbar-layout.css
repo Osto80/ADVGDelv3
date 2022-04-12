@@ -1,4 +1,8 @@
-#navbarTop {
-    height: 20%;
+#navbarTop{
+    height: 12%;
+    --lumo-base-color: rgb(230, 190, 95);
+    --lumo-primary-text-color: rgb(44, 38, 22);
+    --lumo-header-text-color: #110f07;
+
 }
 

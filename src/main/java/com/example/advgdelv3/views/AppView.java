@@ -12,9 +12,13 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
+
 
 @CssImport("./themes/ad-theme/styles.css")
 @CssImport(value = "./themes/ad-theme/components/vaadin-navbar-layout.css", themeFor = "vaadin-app-layout")
+
 public class AppView extends AppLayout {
 
     public AppView(){

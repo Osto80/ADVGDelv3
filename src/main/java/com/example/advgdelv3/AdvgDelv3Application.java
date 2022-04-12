@@ -8,6 +8,7 @@ import com.example.advgdelv3.repositories.GameRepository;
 import com.example.advgdelv3.repositories.ReviewRepository;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +22,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.List;
 
 @SpringBootApplication
-//@Theme("ad-theme")
+@Theme(themeClass = Lumo.class, variant = Lumo.DARK)
 public class AdvgDelv3Application implements AppShellConfigurator {
 
     public static void main(String[] args) {SpringApplication.run(AdvgDelv3Application.class, args);}

@@ -36,7 +36,7 @@ public class ManageReviewsView extends VerticalLayout {
         this.appUserRepository = appUserRepository;
         this.reviewForm = new ReviewForm(reviewService, this, gameService);
         setAlignItems(Alignment.CENTER);
-        add(new H2("Hantera inlägg av " + PrincipalUtil.getPrincipalName() + ": "));
+        add(new H2("Handle reviews by " + PrincipalUtil.getPrincipalName() + ": "));
 
         grid.setItems(reviewService.findPostByAuthorUserName(PrincipalUtil.getPrincipalName()));
         grid.setWidthFull();
@@ -71,7 +71,7 @@ public class ManageReviewsView extends VerticalLayout {
         HorizontalLayout mainContent = new HorizontalLayout(grid, reviewForm);
         mainContent.setSizeFull();
 
-        Button button = new Button("Add new post", evt -> {
+        Button button = new Button("Add new review", evt -> {
             Dialog dialog = new Dialog();
             ReviewForm dialogForm = new ReviewForm(reviewService, this, gameService);
 
