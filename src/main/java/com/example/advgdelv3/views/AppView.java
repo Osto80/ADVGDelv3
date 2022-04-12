@@ -6,6 +6,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -27,10 +28,11 @@ public class AppView extends AppLayout {
         navbarLayout.add(new DrawerToggle(),new H1("AD Game Reviews"));
 
 
-        Button loginButton = new Button("Login", evt ->
-                UI.getCurrent().navigate(LoginView.class));
+        Button loginButton = new Button("Login", evt -> UI.getCurrent().navigate(LoginView.class));
+        loginButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
 
         Button logoutButton = new Button("Logout", evt -> PrincipalUtil.logout());
+        logoutButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
 
         if(PrincipalUtil.isLoggedIn()){
             navbarLayout.add(logoutButton);
