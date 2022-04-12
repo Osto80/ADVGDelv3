@@ -53,7 +53,6 @@ public class ManageReviewsView extends VerticalLayout {
         grid.addComponentColumn(review -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
                 reviewService.deleteById(review.getId());
-                //Notification.show("Review \"" +review.getRevTitle() + "\" was deleted successfully.");
                 updateItems();
             });
 

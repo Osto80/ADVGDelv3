@@ -19,31 +19,18 @@ import com.vaadin.flow.data.binder.Binder;
 
 public class ReviewForm extends FormLayout {
 
-    //TODO Detta är troligtvis ett fel, som måste åtgärdas! Lägg till rätt fält!
-    // revGame, revTitle, RevText, RevPlus, RevMinus, RevScore
-
-    //TODO 2 Bind if used other name for Textfield, TextAre etc than stated previously.
-    // binder.bind(title, "MyNameInTheJavaObject");
-
-    // Har troligtvis med Game klassen att göra. Hur vi konstruerar en Review. Kolla upp detta.
-
     TextField revTitle = new TextField("Review Title");
     TextArea revText = new TextArea("Review Text");
     TextField revPlus = new TextField("Plus");
     TextField revMinus = new TextField("Minus");
     IntegerField revScore = new IntegerField("Score (1-5)");
-    //TextField revGame = new TextField("revGame");
     ComboBox<Game> revGame = new ComboBox<>("Game");
     Button saveButton = new Button("Save");
-
 
     Binder<Review> binder = new BeanValidationBinder<>(Review.class);
     ReviewService reviewService;
     ManageReviewsView manageReviewsView;
     GameService gameService;
-
-
-    //reviewService.findReviewById(this).getRevGame().getGameTitle()
 
     public ReviewForm(ReviewService reviewService, ManageReviewsView manageReviewsView, GameService gameService){
         this.reviewService = reviewService;
@@ -54,18 +41,18 @@ public class ReviewForm extends FormLayout {
         binder.bindInstanceFields(this);
         setVisible(false);
 
-
         saveButton.addClickListener(evt -> handleSave());
 
-        //Bind if used other name for Textfield, TextAre etc than stated previously.
-        //binder.bind(title, "MyNameInTheJavaObject");
-
         add(revGame, revTitle, revText, revPlus, revMinus, revScore, saveButton);
-
     }
 
     private void handleSave(){
         Review review = binder.validate().getBinder().getBean();
+        if(review.getRevScore() < 1) {
+            review.setRevScore(1);
+        } else if (review.getRevScore() > 5) {
+            review.setRevScore(5);
+        }
         if(review.getId() == 0){
             reviewService.save(review);
         } else {

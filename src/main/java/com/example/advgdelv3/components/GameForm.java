@@ -17,7 +17,6 @@ public class GameForm extends FormLayout {
     TextField gameDeveloper = new TextField("Developer");
     IntegerField gameReleaseYear = new IntegerField("Release Year");
     Button saveButton = new Button("Add game");
-
     Binder<Game> binder = new BeanValidationBinder<>(Game.class);
     GameService gameService;
     ManageGamesView manageGamesView;
@@ -40,7 +39,6 @@ public class GameForm extends FormLayout {
         }else {
             gameService.updateById(game.getId(), game);
         }
-        // Glöm inte att skapa
         setGame(null);
         manageGamesView.updateItems();
 

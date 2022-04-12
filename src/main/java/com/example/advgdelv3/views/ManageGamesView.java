@@ -44,7 +44,6 @@ public class ManageGamesView extends VerticalLayout {
         grid.setItems(gameService.findAllGames());
         grid.setWidth(100f, Unit.PERCENTAGE);
 
-
         grid.addColumn(Game::getId).setHeader("Id").setSortable(true).setFlexGrow(0).setWidth("80px").setTextAlign(ColumnTextAlign.CENTER);
         grid.addColumn(Game::getGameTitle).setHeader("Game title").setSortable(true);
         grid.addColumn(Game::getGameDeveloper).setHeader("Developer").setSortable(true);
@@ -90,8 +89,6 @@ public class ManageGamesView extends VerticalLayout {
 
         newGameButton.setIcon(new Icon(VaadinIcon.DATABASE));
         newGameButton.setIconAfterText(true);
-
-
     }
     public void updateItems(){
         grid.setItems(
