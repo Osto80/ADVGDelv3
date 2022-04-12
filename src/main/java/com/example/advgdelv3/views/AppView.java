@@ -6,18 +6,21 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.RouterLink;
 
+@CssImport("./themes/ad-theme/styles.css")
+@CssImport(value = "./themes/ad-theme/components/vaadin-navbar-layout.css", themeFor = "vaadin-app-layout")
 public class AppView extends AppLayout {
 
     public AppView(){
         HorizontalLayout navbarLayout = new HorizontalLayout();
 
-        navbarLayout.add(new DrawerToggle(),new H1("AD Game Reviews "));
+        navbarLayout.add(new DrawerToggle(),new H1("AD Game Reviews"));
 
 
         Button loginButton = new Button("Login", evt ->

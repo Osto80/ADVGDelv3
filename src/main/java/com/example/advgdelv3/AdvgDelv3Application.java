@@ -6,6 +6,8 @@ import com.example.advgdelv3.entities.Review;
 import com.example.advgdelv3.repositories.AppUserRepository;
 import com.example.advgdelv3.repositories.GameRepository;
 import com.example.advgdelv3.repositories.ReviewRepository;
+import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.theme.Theme;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +17,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 @SpringBootApplication
-public class AdvgDelv3Application {
+//@Theme("ad-theme")
+public class AdvgDelv3Application implements AppShellConfigurator {
 
     public static void main(String[] args) {SpringApplication.run(AdvgDelv3Application.class, args);}
 
