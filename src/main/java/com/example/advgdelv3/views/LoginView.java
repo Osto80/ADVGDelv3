@@ -13,7 +13,7 @@ public class LoginView extends Div implements BeforeEnterObserver {
 
     public LoginView(){
 
-        loginOverlay.setTitle("AD Game Review");
+        loginOverlay.setTitle("AD Game Reviews");
         loginOverlay.setDescription("Log in using your username and password");
         loginOverlay.setOpened(true);
         loginOverlay.setAction("login");

@@ -8,9 +8,11 @@ import com.example.advgdelv3.entities.Review;
 import com.example.advgdelv3.repositories.AppUserRepository;
 import com.example.advgdelv3.security.PrincipalUtil;
 import com.example.advgdelv3.service.GameService;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.Icon;
@@ -40,48 +42,54 @@ public class ManageGamesView extends VerticalLayout {
         add(new H2("Hantera spel"));
 
         grid.setItems(gameService.findAllGames());
-        grid.setWidthFull();
+        grid.setWidth(100f, Unit.PERCENTAGE);
 
+
+        grid.addColumn(Game::getId).setHeader("Id").setSortable(true).setFlexGrow(0).setWidth("80px").setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(Game::getGameTitle).setHeader("Game title").setSortable(true);
+        grid.addColumn(Game::getGameDeveloper).setHeader("Developer").setSortable(true);
+        grid.addColumn(Game::getGameReleaseYear).setHeader("Release year").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
         grid.addComponentColumn(game -> {
-            Button button = new Button(new Icon(VaadinIcon.CLOSE_SMALL), evt -> {
-                Notification.show("Post \"" +game.getGameTitle() + "\" was deleted successfully.");
+            Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
                 gameService.deleteGameById(game.getId());
                 updateItems();
             });
-
             button.addThemeVariants(
                     ButtonVariant.LUMO_ERROR,
                     ButtonVariant.LUMO_PRIMARY,
                     ButtonVariant.LUMO_SMALL
             );
-
             return button;
-        });
+        })
+                .setHeader("Delete Game")
+                .setFlexGrow(0)
+                .setWidth("150px")
+                .setTextAlign(ColumnTextAlign.CENTER);
 
-        grid.addColumn(Game::getId).setHeader("Id").setSortable(true).setResizable(true);
-        grid.addColumn(Game::getGameTitle).setHeader("Game title");
-        grid.addColumn(Game::getGameDeveloper).setHeader("Developer");
-        grid.addColumn(Game::getGameReleaseYear).setHeader("Release year");
         grid.asSingleSelect().addValueChangeListener(evt -> {
             gameForm.setGame(evt.getValue());
         });
 
-        HorizontalLayout mainContent = new HorizontalLayout(grid, gameForm);
-        mainContent.setSizeFull();
+        HorizontalLayout mainGameContent = new HorizontalLayout(grid, gameForm);
+        mainGameContent.setSizeFull();
+        mainGameContent.setWidth(90f, Unit.PERCENTAGE);
 
-        Button button = new Button("Add new game", evt -> {
+        Button newGameButton = new Button("Add new game", evt -> {
             Dialog dialog = new Dialog();
-            GameForm dialogForm = new GameForm(gameService, this);
+            GameForm dialogAddGameForm = new GameForm(gameService, this);
 
-            Game game = new Game();
+            Game newGame = new Game();
 
-            dialogForm.setGame(game);
+            dialogAddGameForm.setGame(newGame);
 
-            dialog.add(dialogForm);
+            dialog.add(dialogAddGameForm);
             dialog.open();
         });
 
-        add(mainContent, button);
+        add(mainGameContent, newGameButton);
+
+        newGameButton.setIcon(new Icon(VaadinIcon.DATABASE));
+        newGameButton.setIconAfterText(true);
 
 
     }

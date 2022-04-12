@@ -9,6 +9,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -25,7 +27,12 @@ public class AppView extends AppLayout {
     public AppView(){
         HorizontalLayout navbarLayout = new HorizontalLayout();
 
-        navbarLayout.add(new DrawerToggle(),new H1("AD Game Reviews"));
+        Icon gamepadIconNavbar = new Icon(VaadinIcon.GAMEPAD);
+        gamepadIconNavbar.setSize("50px");
+        Icon gamepadIconNavbar2 = new Icon(VaadinIcon.GAMEPAD);
+        gamepadIconNavbar2.setSize("50px");
+
+        navbarLayout.add(new DrawerToggle(), gamepadIconNavbar, new H1("AD Game Reviews"), gamepadIconNavbar2);
 
 
         Button loginButton = new Button("Login", evt -> UI.getCurrent().navigate(LoginView.class));
@@ -55,6 +62,8 @@ public class AppView extends AppLayout {
 
         RouterLink manageGamesLink = new RouterLink("Hantera Spel", ManageGamesView.class);
         if (PrincipalUtil.isLoggedIn())sideDrawerContent.add(manageGamesLink);
+
+        sideDrawerContent.setAlignItems(FlexComponent.Alignment.CENTER);
 
         addToDrawer(sideDrawerContent);
     }

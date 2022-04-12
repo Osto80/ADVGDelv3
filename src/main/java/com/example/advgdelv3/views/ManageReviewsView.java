@@ -7,9 +7,11 @@ import com.example.advgdelv3.repositories.AppUserRepository;
 import com.example.advgdelv3.security.PrincipalUtil;
 import com.example.advgdelv3.service.GameService;
 import com.example.advgdelv3.service.ReviewService;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.Icon;
@@ -39,12 +41,19 @@ public class ManageReviewsView extends VerticalLayout {
         add(new H2("Handle reviews by " + PrincipalUtil.getPrincipalName() + ": "));
 
         grid.setItems(reviewService.findPostByAuthorUserName(PrincipalUtil.getPrincipalName()));
-        grid.setWidthFull();
+        grid.setWidth(100f, Unit.PERCENTAGE);
 
+        grid.addColumn(Review::getId).setHeader("Id").setSortable(true).setFlexGrow(0).setWidth("80px").setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(Review::getRevTitle).setHeader("Title").setSortable(true).setResizable(true);
+        grid.addColumn(Review::getRevText).setHeader("Text");
+        grid.addColumn(Review::getRevPlus).setHeader("Plus");
+        grid.addColumn(Review::getRevMinus).setHeader("Minus");
+        grid.addColumn(Review::getRevScore).setHeader("Betyg").setSortable(true).setFlexGrow(0).setWidth("100px").setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(review -> review.getRevGame().getGameTitle()).setHeader("Spel").setSortable(true);
         grid.addComponentColumn(review -> {
-            Button button = new Button(new Icon(VaadinIcon.CLOSE_SMALL), evt -> {
-                Notification.show("Post \"" +review.getRevTitle() + "\" was deleted successfully.");
+            Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
                 reviewService.deleteById(review.getId());
+                //Notification.show("Review \"" +review.getRevTitle() + "\" was deleted successfully.");
                 updateItems();
             });
 
@@ -55,40 +64,40 @@ public class ManageReviewsView extends VerticalLayout {
             );
 
             return button;
-        });
-
-        grid.addColumn(Review::getId).setHeader("Id").setSortable(true).setResizable(true);
-        grid.addColumn(Review::getRevTitle).setHeader("Title");
-        grid.addColumn(Review::getRevText).setHeader("Text");
-        grid.addColumn(Review::getRevPlus).setHeader("Plus");
-        grid.addColumn(Review::getRevMinus).setHeader("Minus");
-        grid.addColumn(Review::getRevScore).setHeader("Betyg");
-        grid.addColumn(review -> review.getRevGame().getGameTitle()).setHeader("Spel");
+        }).setHeader("Delete Review")
+                .setFlexGrow(0)
+                .setWidth("150px")
+                .setTextAlign(ColumnTextAlign.CENTER);
         grid.asSingleSelect().addValueChangeListener(evt -> {
             reviewForm.setReview(evt.getValue());
         });
 
-        HorizontalLayout mainContent = new HorizontalLayout(grid, reviewForm);
-        mainContent.setSizeFull();
 
-        Button button = new Button("Add new review", evt -> {
+
+        HorizontalLayout mainReviewContent = new HorizontalLayout(grid, reviewForm);
+        mainReviewContent.setSizeFull();
+        mainReviewContent.setWidth(90f, Unit.PERCENTAGE);
+
+        Button newReviewButton = new Button("Add new review", evt -> {
             Dialog dialog = new Dialog();
-            ReviewForm dialogForm = new ReviewForm(reviewService, this, gameService);
+            ReviewForm dialogAddReviewForm = new ReviewForm(reviewService, this, gameService);
 
-            Review review = new Review();
+            Review newReview = new Review();
             AppUser currentUser = appUserRepository
                     .findByUsername(PrincipalUtil.getPrincipalName())
                     .orElseThrow();
 
-            review.setAppUser(currentUser);
+            newReview.setAppUser(currentUser);
+            dialogAddReviewForm.setReview(newReview);
 
-            dialogForm.setReview(review);
-
-            dialog.add(dialogForm);
+            dialog.add(dialogAddReviewForm);
             dialog.open();
         });
 
-        add(mainContent, button);
+        newReviewButton.setIcon(new Icon(VaadinIcon.DATABASE));
+        newReviewButton.setIconAfterText(true);
+
+        add(mainReviewContent, newReviewButton);
 
     }
 

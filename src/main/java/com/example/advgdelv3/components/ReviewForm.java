@@ -27,11 +27,11 @@ public class ReviewForm extends FormLayout {
 
     // Har troligtvis med Game klassen att göra. Hur vi konstruerar en Review. Kolla upp detta.
 
-    TextField revTitle = new TextField("revTitle");
-    TextArea revText = new TextArea("revText");
-    TextField revPlus = new TextField("revPlus");
-    TextField revMinus = new TextField("revMinus");
-    IntegerField revScore = new IntegerField("revScore");
+    TextField revTitle = new TextField("Review Title");
+    TextArea revText = new TextArea("Review Text");
+    TextField revPlus = new TextField("Plus");
+    TextField revMinus = new TextField("Minus");
+    IntegerField revScore = new IntegerField("Score (1-5)");
     //TextField revGame = new TextField("revGame");
     ComboBox<Game> revGame = new ComboBox<>("Game");
     Button saveButton = new Button("Save");

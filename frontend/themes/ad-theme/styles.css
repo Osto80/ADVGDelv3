@@ -1,6 +1,10 @@
+vaadin-vertical-layout {
+    gap : 0.5rem;
+}
+
 html {
 
-    /*--lumo-border-radius-m: 0.5em;
+    /*--lumo-border-radius-m: 0.5em;/*
     --lumo-shade-40pct: hsla(214, 47%, 21%, 0.38);
     --lumo-font-family: Arial, Helvetica, sans-serif;
     --lumo-primary-text-color: hsl(265, 88%, 44%);

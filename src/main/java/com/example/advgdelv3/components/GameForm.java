@@ -13,9 +13,9 @@ import com.vaadin.flow.data.binder.Binder;
 
 public class GameForm extends FormLayout {
 
-    TextField gameTitle = new TextField("gameTitle");
-    TextField gameDeveloper = new TextField("gameDeveloper");
-    IntegerField gameReleaseYear = new IntegerField("gameReleaseYear");
+    TextField gameTitle = new TextField("Title");
+    TextField gameDeveloper = new TextField("Developer");
+    IntegerField gameReleaseYear = new IntegerField("Release Year");
     Button saveButton = new Button("Add game");
 
     Binder<Game> binder = new BeanValidationBinder<>(Game.class);
